@@ -6,26 +6,33 @@
     <link href="/css/style.css" rel="stylesheet">
     <title>Memory Game</title>
   </head>
-  
-    <nav class="clearfix">
-      <a href="#">Instructions</a>
-      <a href="#">Game</a>
+      <nav class="clearfix">
+            <ul>
+               <li><a href="#">instructions</a></li>
+                <li><a href="#">game</a></li>
+                <li><a href="#">score</a></li>
+                <li><a href="#">about</a></li>
+            </ul>
     </nav>
-    
     <body>
         <div class="box">
             <h1>match.game</h1>
-            <h2>instructions:</h2>
+            <h2>Instructions:</h2>
             <p>
                 Concentration, also known as Match Match, Memory, Pelmanism, Shinkei-suijaku, Pexeso or simply Pairs, is a card game in which all of the cards are laid face down on a surface and two cards are flipped face up over each turn. The object of the game is to turn over pairs of matching cards.
             </p>
-    	</div> <!--/.box-->
+
+            <section class="score-board">
+                <p>score: <span id="score"></span></p>
+            </section> 
+            
+            </div> <!--/.box-->
+
     	<div id="game-board">
-         
   	    </div> <!--/#game-board-->
   
   	<footer>
-        Created with <span>&hearts;</span> by: <span><a href="https://github.com/naeohmi">naeohmi</a></span>
+        created with <span>&hearts;</span> by: <span><a href="https://github.com/naeohmi">naeohmi</a></span>
 	</footer>
     <script src="js/main.js"></script>
 
