@@ -3,7 +3,7 @@ var game = {
     rndNum: function (min, max) {
         return Math.round(Math.random() * (max - min) + min);
     },
-    cardsPlay: [],
+    cardsPlay: [], //cardsInfo pushed here
     board: document.getElementById('game-board'),
     playerScore: 0
 };
@@ -13,14 +13,19 @@ var create = function () {
         var newCard = document.createElement('div');
         newCard.className = 'card';
         //to get random card
-        newCard.setAttribute('info', newRCard); 
+        newCard.setAttribute('info', newRCard);
+        newCard.setAttribute('id', "cId" + i);
         newCard.addEventListener('click', cardBuilder);
         game.board.appendChild(newCard);
     } 
 };
 var cardBuilder = function() {
-    game.cardsPlay.push(this.getAttribute('info'));
-//    console.log(this.getAttribute('info'));
+    var cardInfo = {
+        cType: this.getAttribute('info'),
+        cId: this.getAttribute('id')
+    };
+    game.cardsPlay.push(cardInfo);
+    console.log(this.getAttribute('info'));
     if (this.getAttribute('info') === 'mountain') {
         this.innerHTML = '<img src="images/mountain.png">';
     } else if (this.getAttribute('info') === 'beach'){
@@ -40,54 +45,35 @@ var cardBuilder = function() {
     } 
 };
 
-//var create2 = function() {
-//    var newest = document.createElement('div');
-//    newest.className = 'newest';
-//    newest.setAttribute('more-info', newest);
-//    newest.addEventListener('click', match2);
-//    game.board.appendChild(newest);
-//};
-//
-//var match2 = function() {
-//    game.cardsPlay.push(this.getAttribute('more-info'));
-//    console.log(newest.getAttribute('more-info'));
-//    if (game.cardsPlay[0].innerHTML === game.cardsPlay[1].innerHTML) {
-//        this.getAttribute('more-info') === 'match';
-//        console.log('match');
-//    } else {
-//        this.getAttribute('more-info') === 'not-match';
-//        console.log('not match');
-//    } 
-//};
-//
-//var matching = function() {
-//    if (this.getAttribute('more-info') === 'match') {
-//        this.innerHTML = '<img src="images/match.png">';
-//        console.log('match yes');
-//        game.playerScore++;
-//        addScore.innerHTML = game.playerScore;
-//    } else {
-//        console.log('match no')
-//        this.innerHTML = '<img src="images/front.png">';
-//    }
-//};
-
 var addScore = document.getElementById('score');
 
-var match = function() {
-     if (game.cardsPlay[0].innerHTML === game.cardsPlay[1].innerHTML) {
-         console.log('match yes');
-         game.playerScore++;
-         addScore.innerHTML = game.playerScore;
-
-         game.cardsPlay.innerHTML = '<img src="images/match.png">';
+var match = function(one, two) {
+    if ((game.cardsPlay[0].cType === "mountain" && game.cardsPlay[1].cType === "mountain") && (game.cardsPlay[0].cId !== game.cardsPlay[1].cId)) {
+        console.log('match');
+        game.playerScore++;
+        addScore.innerHTML = game.playerScore;
+    } else if ((game.cardsPlay[0].cType === "river" && game.cardsPlay[1].cType === "river") && (game.cardsPlay[0].cId !== game.cardsPlay[1].cId)) {
+        console.log('match');
+        game.playerScore++;
+        addScore.innerHTML = game.playerScore;
+    } else if ((game.cardsPlay[0].cType === "desert" && game.cardsPlay[1].cType === "desert") && (game.cardsPlay[0].cId !== game.cardsPlay[1].cId)) {
+        console.log('match');
+        game.playerScore++;
+        addScore.innerHTML = game.playerScore;
+    } else if ((game.cardsPlay[0].cType === "sunset" && game.cardsPlay[1].cType === "sunset") && (game.cardsPlay[0].cId !== game.cardsPlay[1].cId)) {
+        console.log('match');
+        game.playerScore++;
+        addScore.innerHTML = game.playerScore;
+    } else if ((game.cardsPlay[0].cType === "iceberg" && game.cardsPlay[1].cType === "iceberg") && (game.cardsPlay[0].cId !== game.cardsPlay[1].cId)) {
+        console.log('match');
+        game.playerScore++;
+        addScore.innerHTML = game.playerScore;
+        //final! yay :D
+        
      } else {
-         console.log('match no');
-         setTimeout(function() {
-             one.innerHTML = '<img src="images/logo.png">';
-             two.innerHTML = '<img src="images/logo.png">';
-         }, 1000);
-//        game.cardsPlay.innerHTML = '<img src="images/front.png">';
+         console.log('bummersville');
+//             one.innerHTML = '<img src="images/logo.png">';
+//             two.innerHTML = '<img src="images/logo.png">';
      }
 };
 

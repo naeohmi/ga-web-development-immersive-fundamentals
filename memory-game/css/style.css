@@ -57,7 +57,7 @@ body .score-board {
     height: 100px;
     left: 83%;
     top: 18%;
-    background-color: rgba(255,198,194,0.7);
+    background-color: rgba(255,209,112,0.5);
     display: inline-block;
     position: fixed;
     border: 1px black dotted;
