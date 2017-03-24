@@ -26,19 +26,10 @@ var cardBuilder = function() {
     };
     game.cardsPlay.push(cardInfo);
     console.log(this.getAttribute('info'));
-    if (this.getAttribute('info') === 'mountain') {
-        this.innerHTML = '<img src="images/mountain.png">';
-    } else if (this.getAttribute('info') === 'beach'){
-        this.innerHTML = '<img src="images/beach.png">';
-    } else if (this.getAttribute('info') === 'river'){
-        this.innerHTML = '<img src="images/river.png">';
-    } else if (this.getAttribute ('info') === 'desert') {
-        this.innerHTML = '<img src="images/desert.png">';
-    } else if (this.getAttribute ('info') === 'sunset') {
-        this.innerHTML = '<img src="images/sunset.png">';
-    } else if (this.getAttribute ('info') === 'iceberg') {
-        this.innerHTML = '<img src="images/ice.png">';
-    }
+
+    var pic = this.getAttribute('info') 
+        this.innerHTML = '<img src="images/' + pic + '.png">';
+ 
     if (game.cardsPlay.length === 2) {
         match(game.cardsPlay[0], game.cardsPlay[1]);
         game.cardsPlay = [];
@@ -61,8 +52,9 @@ var match = function(c0, c1) {
         setTimeout(function() { //another flipping idea, not working yet
             console.log('nope');
 
-            for (var i = 0; i < 50; i += 1) {
-            document.getElementsByClassName("card")[i].innerHTML= "";
+            var c = document.getElementsByClassName("card");
+            for (var i = 0; i < c.length; i += 1) {
+            c[i].innerHTML= "";
             }
             game.cardsPlay = [];
         }, 100);
