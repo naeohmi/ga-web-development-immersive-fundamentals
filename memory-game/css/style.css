@@ -103,23 +103,6 @@ nav ul li a:hover {
     font-weight: 100;
 }
 
-.clearfix:after {
-    visibility: hidden;
-    display: block;
-    content: " ";
-    clear: both;
-    height: 0;
-    font-size: 0;
-}
-
-div .board {
-    height: 50%;
-    width: 50%;
-    display: inline-block;
-    float: left;
-    clear: left;
-}
-
 img {
     height: 150px;
     width: 100px;
@@ -139,7 +122,6 @@ div .card {
     margin: 1%;
     transition: 2s;
     transition-timing-function: cubic-bezier(.5, 2, .8, -2);
-
 }
 
 div .card:hover {
@@ -149,6 +131,14 @@ div .card:hover {
 
 div .card:active {
     filter: drop-shadow(15px 25px 15px rgba(0,0,0,0.9));
+}
+
+div #game-board {
+    transition: 5s;
+}
+
+div #game-board:hover {
+    background-color: pink;
 }
 
 footer {

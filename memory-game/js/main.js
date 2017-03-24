@@ -42,8 +42,6 @@ var cardBuilder = function() {
     if (game.cardsPlay.length === 2) {
         match(game.cardsPlay[0], game.cardsPlay[1]);
         game.cardsPlay = [];
-        //game.cardsPlay[0].innerHTML = '<img src="images/match.png">';
-        //game.cardsPlay[1].innerHTML = '<img src="images/match.png">';
     } 
 };
 
@@ -56,54 +54,43 @@ var match = function(c0, c1) {
         console.log('match');
         game.score++;
         addScore.innerHTML = game.score;
+
     } else if ((c0.cType === "river" && c1.cType === "river") && (c0.cId !== c1.cId)) {
         console.log('match');
         game.score++;
         addScore.innerHTML = game.score;
+    
     } else if ((c0.cType === "desert" && c1.cType === "desert") && (c0.cId !== c1.cId)) {
         console.log('match');
         game.score++;
         addScore.innerHTML = game.score;
+
     } else if ((c0.cType === "sunset" && c1.cType === "sunset") && (c0.cId !== c1.cId)) {
         console.log('match');
         game.score++;
         addScore.innerHTML = game.score;
+
     } else if ((c0.cType === "iceberg" && c1.cType === "iceberg") && (c0.cId !== c1.cId)) {
         console.log('match');
         game.score++;
         addScore.innerHTML = game.score;
+
     } else if ((c0.cType === "beach" && c1.cType === "beach") && (c0.cId !== c1.cId)) {
         console.log('match');
         game.score++;
         addScore.innerHTML = game.score;
+
     } else {
         console.log('bummersville');
-        setTimeout(function() { //another flipping idea, not working yet
-            console.log('nope');
-            c0.innerHTML = '<img src="images/front.png">';
-            c1.innerHTML = '<img src="images/front.png">';
+        setTimeout(function() {
+            var c = document.getElementsByClassName("card");
+            for (var i = 0; i < c.length; i += 1) {
+                c[i].innerHTML= '';
+                }
+            
             game.cardsPlay = [];
-        }, 100);
+        }, 700);
      }
 };
-
-//I want to get the card to flip to match.png when match = true and flip back to front.png when match = false
-
-//if (match === true) { //one idea to get cards to flip back but not working yet
-//    this.innerHTML = '<img src="images/match.png">';
-//} else {
-//    this.innerHTML = '<img src="images/front.png">';
-//}
-
-
-//var flip = function() { //another idea to get cards flipping, also not working
-//    for (var j = 0; j <= 14; j++) {
-//        if (game.cardsPlay[j].cId === 'match') {
-//            this.innerHTML = '<img src="images/match.png">';
-//        } else {
-//            this.innerHTML = '<img src="images/front.png">';
-//        }
-//    }
-//};
 
 create();
