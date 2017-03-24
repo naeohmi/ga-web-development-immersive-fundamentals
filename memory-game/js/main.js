@@ -26,6 +26,7 @@ var cardBuilder = function() {
     };
     game.cardsPlay.push(cardInfo);
     console.log(this.getAttribute('info'));
+
     if (this.getAttribute('info') === 'mountain') {
         this.innerHTML = '<img src="images/mountain.png">';
     } else if (this.getAttribute('info') === 'beach'){
@@ -39,6 +40,7 @@ var cardBuilder = function() {
     } else if (this.getAttribute ('info') === 'iceberg') {
         this.innerHTML = '<img src="images/ice.png">';
     }
+
     if (game.cardsPlay.length === 2) {
         match(game.cardsPlay[0], game.cardsPlay[1]);
         game.cardsPlay = [];
@@ -50,6 +52,7 @@ var addScore = document.getElementById('score');
 var match = function(c0, c1) {
     var c0 = game.cardsPlay[0];
     var c1 = game.cardsPlay[1];
+  
     if ((c0.cType === "mountain" && c1.cType === "mountain") && (c0.cId !== c1.cId)) {
         console.log('match');
         game.score++;
@@ -86,8 +89,7 @@ var match = function(c0, c1) {
             var c = document.getElementsByClassName("card");
             for (var i = 0; i < c.length; i += 1) {
                 c[i].innerHTML= '';
-                }
-            
+            }
             game.cardsPlay = [];
         }, 700);
      }
