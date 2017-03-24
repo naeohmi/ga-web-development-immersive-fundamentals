@@ -26,6 +26,7 @@ var cardBuilder = function() {
     };
     game.cardsPlay.push(cardInfo);
     console.log(this.getAttribute('info'));
+
     if (this.getAttribute('info') === 'mountain') {
         this.innerHTML = '<img src="images/mountain.png">';
     } else if (this.getAttribute('info') === 'beach'){
@@ -39,6 +40,7 @@ var cardBuilder = function() {
     } else if (this.getAttribute ('info') === 'iceberg') {
         this.innerHTML = '<img src="images/ice.png">';
     }
+
     if (game.cardsPlay.length === 2) {
         match(game.cardsPlay[0], game.cardsPlay[1]);
         game.cardsPlay = [];
@@ -52,6 +54,7 @@ var addScore = document.getElementById('score');
 var match = function(c0, c1) {
     var c0 = game.cardsPlay[0];
     var c1 = game.cardsPlay[1];
+  
     if ((c0.cType === "mountain" && c1.cType === "mountain") && (c0.cId !== c1.cId)) {
         console.log('match');
         game.score++;
@@ -80,30 +83,11 @@ var match = function(c0, c1) {
         console.log('bummersville');
         setTimeout(function() { //another flipping idea, not working yet
             console.log('nope');
-            c0.innerHTML = '<img src="images/front.png">';
-            c1.innerHTML = '<img src="images/front.png">';
+
             game.cardsPlay = [];
-        }, 100);
+        }, 800);
      }
 };
 
-//I want to get the card to flip to match.png when match = true and flip back to front.png when match = false
-
-//if (match === true) { //one idea to get cards to flip back but not working yet
-//    this.innerHTML = '<img src="images/match.png">';
-//} else {
-//    this.innerHTML = '<img src="images/front.png">';
-//}
-
-
-//var flip = function() { //another idea to get cards flipping, also not working
-//    for (var j = 0; j <= 14; j++) {
-//        if (game.cardsPlay[j].cId === 'match') {
-//            this.innerHTML = '<img src="images/match.png">';
-//        } else {
-//            this.innerHTML = '<img src="images/front.png">';
-//        }
-//    }
-//};
 
 create();
