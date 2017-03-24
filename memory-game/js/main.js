@@ -3,9 +3,9 @@ var game = {
     rndNum: function (min, max) {
         return Math.round(Math.random() * (max - min) + min);
     },
-    cardsPlay: [],
+    cardsPlay: [], //cardsInfo pushed here
     board: document.getElementById('game-board'),
-    playerScore: 0
+    score: 0
 };
 var create = function () {
     for (var i = 0; i <= 14; i++) {
@@ -13,14 +13,19 @@ var create = function () {
         var newCard = document.createElement('div');
         newCard.className = 'card';
         //to get random card
-        newCard.setAttribute('info', newRCard); 
+        newCard.setAttribute('info', newRCard);
+        newCard.setAttribute('id', 'cId' + i);
         newCard.addEventListener('click', cardBuilder);
         game.board.appendChild(newCard);
     } 
 };
 var cardBuilder = function() {
-    game.cardsPlay.push(this.getAttribute('info'));
-//    console.log(this.getAttribute('info'));
+    var cardInfo = {
+        cType: this.getAttribute('info'), //card type(class) = one of the 6 different card choices
+        cId: this.getAttribute('id') //card ID(id) = unique random number for each individual card
+    };
+    game.cardsPlay.push(cardInfo);
+    console.log(this.getAttribute('info'));
     if (this.getAttribute('info') === 'mountain') {
         this.innerHTML = '<img src="images/mountain.png">';
     } else if (this.getAttribute('info') === 'beach'){
@@ -37,58 +42,50 @@ var cardBuilder = function() {
     if (game.cardsPlay.length === 2) {
         match(game.cardsPlay[0], game.cardsPlay[1]);
         game.cardsPlay = [];
+        //game.cardsPlay[0].innerHTML = '<img src="images/match.png">';
+        //game.cardsPlay[1].innerHTML = '<img src="images/match.png">';
     } 
 };
 
-//var create2 = function() {
-//    var newest = document.createElement('div');
-//    newest.className = 'newest';
-//    newest.setAttribute('more-info', newest);
-//    newest.addEventListener('click', match2);
-//    game.board.appendChild(newest);
-//};
-//
-//var match2 = function() {
-//    game.cardsPlay.push(this.getAttribute('more-info'));
-//    console.log(newest.getAttribute('more-info'));
-//    if (game.cardsPlay[0].innerHTML === game.cardsPlay[1].innerHTML) {
-//        this.getAttribute('more-info') === 'match';
-//        console.log('match');
-//    } else {
-//        this.getAttribute('more-info') === 'not-match';
-//        console.log('not match');
-//    } 
-//};
-//
-//var matching = function() {
-//    if (this.getAttribute('more-info') === 'match') {
-//        this.innerHTML = '<img src="images/match.png">';
-//        console.log('match yes');
-//        game.playerScore++;
-//        addScore.innerHTML = game.playerScore;
-//    } else {
-//        console.log('match no')
-//        this.innerHTML = '<img src="images/front.png">';
-//    }
-//};
-
 var addScore = document.getElementById('score');
 
-var match = function() {
-     if (game.cardsPlay[0].innerHTML === game.cardsPlay[1].innerHTML) {
-         console.log('match yes');
-         game.playerScore++;
-         addScore.innerHTML = game.playerScore;
+var match = function(c0, c1) {
+    var c0 = game.cardsPlay[0];
+    var c1 = game.cardsPlay[1];
+    if (game.cardsPlay[0].cType === game.cardsPlay[1].cType) {
+        console.log('match');
+        game.score++;
+        addScore.innerHTML = game.score;
+    } else {
+        console.log('bummersville');
+        setTimeout(function() { //another flipping idea, not working yet
+            console.log('nope');
 
-         game.cardsPlay.innerHTML = '<img src="images/match.png">';
-     } else {
-         console.log('match no');
-         setTimeout(function() {
-             one.innerHTML = '<img src="images/logo.png">';
-             two.innerHTML = '<img src="images/logo.png">';
-         }, 1000);
-//        game.cardsPlay.innerHTML = '<img src="images/front.png">';
+            for (var i = 0; i < 50; i += 1) {
+            document.getElementsByClassName("card")[i].innerHTML= "";
+            }
+            game.cardsPlay = [];
+        }, 100);
      }
 };
+
+//I want to get the card to flip to match.png when match = true and flip back to front.png when match = false
+
+//if (match === true) { //one idea to get cards to flip back but not working yet
+//    this.innerHTML = '<img src="images/match.png">';
+//} else {
+//    this.innerHTML = '<img src="images/front.png">';
+//}
+
+
+//var flip = function() { //another idea to get cards flipping, also not working
+//    for (var j = 0; j <= 14; j++) {
+//        if (game.cardsPlay[j].cId === 'match') {
+//            this.innerHTML = '<img src="images/match.png">';
+//        } else {
+//            this.innerHTML = '<img src="images/front.png">';
+//        }
+//    }
+//};
 
 create();
