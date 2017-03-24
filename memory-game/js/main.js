@@ -21,8 +21,8 @@ var create = function () {
 };
 var cardBuilder = function() {
     var cardInfo = {
-        cType: this.getAttribute('info'), //card type(class) = one of the 5 different type choices, doesn't change
-        cId: this.getAttribute('id') //card ID(id) = unique random number for each individual card, does change each refresh 
+        cType: this.getAttribute('info'), //card type(class) = one of the 6 different card choices
+        cId: this.getAttribute('id') //card ID(id) = unique random number for each individual card
     };
     game.cardsPlay.push(cardInfo);
     console.log(this.getAttribute('info'));
@@ -56,42 +56,34 @@ var match = function(c0, c1) {
         console.log('match');
         game.score++;
         addScore.innerHTML = game.score;
-        return true; 
     } else if ((c0.cType === "river" && c1.cType === "river") && (c0.cId !== c1.cId)) {
         console.log('match');
         game.score++;
         addScore.innerHTML = game.score;
-        return true;
     } else if ((c0.cType === "desert" && c1.cType === "desert") && (c0.cId !== c1.cId)) {
         console.log('match');
         game.score++;
         addScore.innerHTML = game.score;
-        return true;
     } else if ((c0.cType === "sunset" && c1.cType === "sunset") && (c0.cId !== c1.cId)) {
         console.log('match');
         game.score++;
         addScore.innerHTML = game.score;
-        return true;
     } else if ((c0.cType === "iceberg" && c1.cType === "iceberg") && (c0.cId !== c1.cId)) {
         console.log('match');
         game.score++;
         addScore.innerHTML = game.score;
-        return true;
     } else if ((c0.cType === "beach" && c1.cType === "beach") && (c0.cId !== c1.cId)) {
         console.log('match');
         game.score++;
         addScore.innerHTML = game.score;
-        return true;
     } else {
         console.log('bummersville');
-        return false;
-//        setTimeout(function() { //another flipping idea, not working yet
-//            console.log('nope');
-//            c0.innerHTML = '';
-//            c0.innerHTML = '<img src="images/front.png">';
-//            c1.innerHTML = '';
-//            game.cardsPlay = [];
-//        }, 100);
+        setTimeout(function() { //another flipping idea, not working yet
+            console.log('nope');
+            c0.innerHTML = '<img src="images/front.png">';
+            c1.innerHTML = '<img src="images/front.png">';
+            game.cardsPlay = [];
+        }, 100);
      }
 };
 
