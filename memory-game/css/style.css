@@ -8,6 +8,7 @@ blueish green - rgba(0,189,179,1);
 light blue - rgba(154,244,239,1);
 pink - rgba(255,198,194,1);
 iceberg yellowish - rgba(255,209,112,1);
+light purple - rgba(215,155,230,1);
 */
 
 * {
@@ -57,7 +58,7 @@ body .score-board {
     height: 100px;
     left: 83%;
     top: 18%;
-    background-color: rgba(255,209,112,0.5);
+    background-color: rgba(215,155,230,0.5);
     display: inline-block;
     position: fixed;
     border: 1px black dotted;
@@ -70,6 +71,46 @@ body .score-board p {
     font-size: 32px;
     color: white;
     text-shadow: .7px .7px .7px black, 1px 1px 3px rgba(0,160,125,1);
+}
+
+body .timer-board {
+    width: 100px;
+    height: 100px;
+    left: 83%;
+    top: 35%;
+    background-color: rgba(215,155,230,0.5);
+    display: inline-block;
+    position: fixed;
+    border: 1px black dotted;
+    border-radius: 35%;
+}
+
+body .timer-board p {
+    top: 15%;
+    text-align: center;
+    font-size: 32px;
+    color: rgba(0,189,179,1);
+    text-shadow: .7px .7px .7px black, 1px 1px 3px rgba(0,160,125,1);
+}
+
+body .reset-button {
+    width: 100px;
+    height: 100px;
+    left: 83%;
+    top: 52%;
+    background-color: rgba(215,155,230,0.5);
+    display: inline-block;
+    position: fixed;
+    border: 1px black dotted;
+    border-radius: 35%;
+}
+
+body .reset-button p {
+    top: 25%;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    text-shadow: .9px .9px .9px black, 2px 2px 3.5px rgba(255,200,198,1);
 }
 
 nav {
@@ -131,14 +172,6 @@ div .card:hover {
 
 div .card:active {
     filter: drop-shadow(15px 25px 15px rgba(0,0,0,0.9));
-}
-
-div #game-board {
-    transition: 5s;
-}
-
-div #game-board:hover {
-    background-color: pink;
 }
 
 footer {

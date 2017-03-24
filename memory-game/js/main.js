@@ -118,4 +118,26 @@ var won = function(one, zero) {
     }
 };
 
+var timer = function() {
+    if (document.body.contains(document.querySelector("#timer"))) {
+        var timer = {}; //timer object
+        timer.length = 3 * 60 * 1000; //min, sec, milsec
+        timer.count = function () {
+            var minutes = Math.floor(timer.length / (60 * 1000));
+            var seconds = (timer.length / 1000) - (minutes * 60);
+            
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            if (timer.length <= 0) {
+                document.querySelector("body").innerHTML = "<h1 class='error'>Game Time Over!</h1>";
+                clearInterval(timer.countInt);
+            }
+            timer.length -=1000;
+            document.querySelector("#timer").innerHTML = minutes + ":" + seconds;
+        }
+        timer.countInt = setInterval(timer.count, 1000);
+    }
+};
+timer();
 create();
