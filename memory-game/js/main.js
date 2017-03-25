@@ -5,7 +5,7 @@ var game = {
     },
     cardsPlay: [], //cardsInfo pushed here
     board: document.getElementById('game-board'),
-    score: 0,
+    score: 20,
     w: false
 };
 var create = function () {
@@ -113,8 +113,7 @@ var won = function(one, zero) {
         setTimeout(function() {
             one.innerHTML = '';
             zero.innerHTML = '';
-        }, 400);
-        
+        }, 400);   
     }
 };
 
