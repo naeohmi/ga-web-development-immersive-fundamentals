@@ -18,7 +18,27 @@ var create = function () {
         newCard.setAttribute('id', 'cId' + i);
         newCard.addEventListener('click', cardBuilder);
         game.board.appendChild(newCard);
-    } 
+    }
+    if (document.body.contains(document.querySelector("#timer"))) {
+        var timer = {}; //timer object
+        timer.length = 1 * 60 * 1000; //min, sec, milsec
+        timer.count = function () {
+            var minutes = Math.floor(timer.length / (60 * 1000));
+            var seconds = (timer.length / 1000) - (minutes * 60);
+            
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            if (timer.length <= 0) {
+                document.querySelector("body").innerHTML = "<h1 class='error'>Game Time Over!</h1>";
+                clearInterval(timer.countInt);
+            }
+            timer.length -=1000;
+            document.querySelector("#timer").innerHTML = minutes + ":" + seconds;
+        }
+        timer.countInt = setInterval(timer.count, 1000);
+    }
+    
 };
 var cardBuilder = function() {
     var cardInfo = {
@@ -104,7 +124,7 @@ var won = function(one, zero) {
             console.log("yay");
             one.innerHTML =  '<img src="images/match.png">';
             zero.innerHTML = '<img src="images/match.png">';
-        }, 400);
+        }, 500);
         one.removeEventListener('click', cardBuilder);
         zero.removeEventListener('click', cardBuilder);
     } else {
@@ -113,31 +133,9 @@ var won = function(one, zero) {
         setTimeout(function() {
             one.innerHTML = '';
             zero.innerHTML = '';
-        }, 400);
+        }, 500);
         
     }
 };
 
-var timer = function() {
-    if (document.body.contains(document.querySelector("#timer"))) {
-        var timer = {}; //timer object
-        timer.length = 3 * 60 * 1000; //min, sec, milsec
-        timer.count = function () {
-            var minutes = Math.floor(timer.length / (60 * 1000));
-            var seconds = (timer.length / 1000) - (minutes * 60);
-            
-            if (seconds < 10) {
-                seconds = "0" + seconds;
-            }
-            if (timer.length <= 0) {
-                document.querySelector("body").innerHTML = "<h1 class='error'>Game Time Over!</h1>";
-                clearInterval(timer.countInt);
-            }
-            timer.length -=1000;
-            document.querySelector("#timer").innerHTML = minutes + ":" + seconds;
-        }
-        timer.countInt = setInterval(timer.count, 1000);
-    }
-};
-timer();
 create();
