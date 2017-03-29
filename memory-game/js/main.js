@@ -13,6 +13,7 @@ var create = function () {
         var newRCard = game.cards[game.rndNum(0,5)];
         var newCard = document.createElement('div');
         newCard.className = 'card';
+        newCard.innerHTML = '<img src="images/front.png">';
         //to get random card
         newCard.setAttribute('info', newRCard);
         newCard.setAttribute('id', 'cId' + i);
