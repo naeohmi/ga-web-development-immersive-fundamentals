@@ -3,35 +3,37 @@ var game = {
     rndNum: function (min, max) {
         return Math.round(Math.random() * (max - min) + min);
     },
-    cardsPlay: [], //cardsInfo pushed here
+    cardsPlay: [], //cardsdata-card pushed here
     board: document.getElementById('game-board'),
     score: 0,
     w: false
-};
+}; 
+//creates cards as a div class a class of card a data-card of the name of the card type
+//and unique ID for each randomly generated card
 var create = function () {
     for (var i = 0; i <= 20; i++) {
         var newRCard = game.cards[game.rndNum(0,5)];
         var newCard = document.createElement('div');
         newCard.className = 'card';
-//         newCard.innerHTML = '<img src="images/front.png">';
         //to get random card
-        newCard.setAttribute('info', newRCard);
+        newCard.setAttribute('data-card', newRCard);
         newCard.setAttribute('id', 'cId' + i);
         newCard.addEventListener('click', cardBuilder);
         game.board.appendChild(newCard);
     }
+    //sets up the timer at one minute
     if (document.body.contains(document.querySelector("#timer"))) {
         var timer = {}; //timer object
         timer.length = 1 * 60 * 1000; //min, sec, milsec
         timer.count = function () {
             var minutes = Math.floor(timer.length / (60 * 1000));
             var seconds = (timer.length / 1000) - (minutes * 60);
-            
             if (seconds < 10) {
                 seconds = "0" + seconds;
-            }
+            } //when timer runs out, clear the screen with score
             if (timer.length <= 0) {
-                document.querySelector("body").innerHTML = "<h1 class='error'>Game Time Over!</h1>";
+                document.querySelector("game-board").innerHTML =
+                "<h1 class='timer-out'>Game Time Over!</h1> <h2 class='final-score'>Final Score:<span></h2>";
                 clearInterval(timer.countInt);
             }
             timer.length -=1000;
@@ -39,27 +41,26 @@ var create = function () {
         }
         timer.countInt = setInterval(timer.count, 1000);
     }
-    
 };
 var cardBuilder = function() {
-    var cardInfo = {
-        cType: this.getAttribute('info'), //card type(class) = one of the 6 different card choices
+    var carddata-card = {
+        cType: this.getAttribute('data-card'), //card type(class) = one of the 6 different card choices
         cId: this.getAttribute('id') //card ID(id) = unique random number for each individual card
     };
-    game.cardsPlay.push(cardInfo);
-    console.log(this.getAttribute('info'));
+    game.cardsPlay.push(carddata-card);
+    console.log(this.getAttribute('data-card'));
 
-    if (this.getAttribute('info') === 'mountain') {
+    if (this.getAttribute('data-card') === 'mountain') {
         this.innerHTML = '<img src="images/mountain.png">';
-    } else if (this.getAttribute('info') === 'beach'){
+    } else if (this.getAttribute('data-card') === 'beach'){
         this.innerHTML = '<img src="images/beach.png">';
-    } else if (this.getAttribute('info') === 'river'){
+    } else if (this.getAttribute('data-card') === 'river'){
         this.innerHTML = '<img src="images/river.png">';
-    } else if (this.getAttribute ('info') === 'desert') {
+    } else if (this.getAttribute ('data-card') === 'desert') {
         this.innerHTML = '<img src="images/desert.png">';
-    } else if (this.getAttribute ('info') === 'sunset') {
+    } else if (this.getAttribute ('data-card') === 'sunset') {
         this.innerHTML = '<img src="images/sunset.png">';
-    } else if (this.getAttribute ('info') === 'iceberg') {
+    } else if (this.getAttribute ('data-card') === 'iceberg') {
         this.innerHTML = '<img src="images/ice.png">';
     }
 
@@ -68,9 +69,6 @@ var cardBuilder = function() {
         game.cardsPlay = [];
     } 
 };
-
-var addScore = document.getElementById('score');
-
 var match = function() {
     var c0 = game.cardsPlay[0];
     var c1 = game.cardsPlay[1];
@@ -110,14 +108,14 @@ var match = function() {
         game.w = true;
 
     } else {
-        console.log('nottt-match');
+        console.log('nah');
         game.w = false;
         game.score--;
         addScore.innerHTML = game.score;
     }
     won(one, zero);
 };
-
+var addScore = document.getElementById('score');
 var won = function(one, zero) {
     console.log(game.w);
     if (game.w == true) {
@@ -125,7 +123,7 @@ var won = function(one, zero) {
             console.log("yay");
             one.innerHTML =  '<img src="images/match.png">';
             zero.innerHTML = '<img src="images/match.png">';
-        }, 500);
+        }, 700);
         one.removeEventListener('click', cardBuilder);
         zero.removeEventListener('click', cardBuilder);
     } else {
